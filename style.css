@@ -1,0 +1,199 @@
+/* --- GLOBAL STYLES --- */
+:root {
+    --gold: #D4AF37;
+    --dark: #1a1a1a;
+}
+
+body {
+    font-family: 'Playfair Display', serif;
+    overflow-x: hidden;
+    margin: 0;
+}
+
+/* --- PAGE NAVIGATION LOGIC (The "React-like" State) --- */
+input[name="page-nav"] {
+    display: none;
+}
+
+.page-content {
+    display: none; /* Hide all pages by default */
+    padding-top: 80px;
+}
+
+/* Show page based on radio selection */
+#nav-home:checked ~ main #home-page { display: block; }
+#nav-sermons:checked ~ main #sermons-page { display: block; }
+#nav-lyrics:checked ~ main #lyrics-page { display: block; }
+#nav-gallery:checked ~ main #gallery-page { display: block; }
+
+/* Active Nav Link Styling */
+#nav-home:checked ~ nav .nav-label[for="nav-home"],
+#nav-sermons:checked ~ nav .nav-label[for="nav-sermons"],
+#nav-lyrics:checked ~ nav .nav-label[for="nav-lyrics"],
+#nav-gallery:checked ~ nav .nav-label[for="nav-gallery"] {
+    color: var(--gold);
+}
+
+.nav-label {
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--dark);
+    transition: color 0.3s ease;
+}
+
+/* --- HERO SECTION --- */
+.hero-section {
+    height: 100vh;
+    background-image: url('https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=1600');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.btn-gold-lg {
+    display: inline-block;
+    background-color: var(--gold);
+    color: white;
+    padding: 1rem 3rem;
+    border-radius: 50px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+}
+
+.btn-gold-lg:hover {
+    transform: scale(1.05);
+}
+
+/* --- ACTIVITY BOXES (from React isHovered state) --- */
+.activity-box {
+    border-radius: 24px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    cursor: pointer;
+}
+
+.activity-box:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 30px 60px rgba(212, 175, 55, 0.3);
+}
+
+.box-image-wrap {
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+}
+
+.box-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.activity-box:hover img {
+    transform: scale(1.15);
+}
+
+.box-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.3));
+    transition: 0.4s ease;
+}
+
+.activity-box:hover .box-overlay {
+    background: linear-gradient(to bottom, transparent, rgba(212, 175, 55, 0.4));
+}
+
+.box-icon {
+    font-size: 2rem;
+    transition: transform 0.3s ease;
+}
+
+.activity-box:hover .box-icon {
+    transform: scale(1.2);
+}
+
+.activity-box h3 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.activity-box:hover h3 {
+    color: var(--gold);
+}
+
+/* --- MISC PAGE STYLES --- */
+.gold-text {
+    color: var(--gold) !important;
+}
+
+.lyrics-sidebar {
+    min-height: 80vh;
+}
+
+.song-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.song-item {
+    padding: 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+    cursor: pointer;
+    background: white;
+    color: #6c757d;
+}
+
+.song-item.active {
+    background-color: var(--gold);
+    color: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border-color: var(--gold);
+}
+
+.lyrics-text {
+    font-size: 1.5rem;
+    font-style: italic;
+    line-height: 2.5;
+    white-space: pre-wrap;
+    font-family: inherit;
+}
+
+.gallery-card {
+    height: 250px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
